@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800|Titillium+Web:300,400,600,700" rel="stylesheet">
+    <link rel="stylesheet" href="/resources/css/reset.css"/>
+    <link rel="stylesheet" href="/resources/css/form.css"/>
+    <link rel="stylesheet" href="/resources/css/style.css"/>
+
+</head>
+<body>
+    <div class="wrapper">
+        <section class="section main-section">
+            <div class="bg-area is-show"></div>
+            <div class="intro-card">
+                <h2>SIMPLE CARD</h2>
+                <p>Let's make your own business cards.</p>
+                <a href="/createCard.html" class="btn">CREATED NEW CARD</a>
+            </div>    
+            <a class="img-copyright" href="#">Business card image created by Freepik</a>
+        </section>
+    </div>
+    <script>
+        //rendom background image
+        (function(){
+            var pic = [
+                {
+                    img: '/resources/img/bg1.jpg',
+                    link: 'https://www.freepik.com/free-photos-vectors/business-card',
+                    text: 'Business card image created by Freepik'
+                },{
+                    img : '/resources/img/bg2.jpg',
+                    link: 'https://www.freepik.com/free-photos-vectors/business-card',
+                    text: 'Business card image created by Eightonesix - Freepik.com'
+                }
+            ];
+            var bg = document.querySelector('.main-section');
+            var bgClone = document.querySelector('.bg-area');
+            var bgCopy = document.querySelector('.img-copyright');
+            var randomNum;
+            var prevRandomNum = 0;
+            
+            setInterval(function(){
+                //random value
+                while(true){
+                    randomNum = Math.floor(Math.random() * 2);
+                    if(randomNum != prevRandomNum){ break;}
+                }
+                prevRandomNum = randomNum;
+                
+                //reset
+                var targetImg = 'url('+pic[randomNum].img;+')';
+                var targetLink = pic[randomNum].link;
+                var targetText = pic[randomNum].text;
+
+                //event reset
+                bgClone.style.display = 'none';
+                bg.style.backgroundImage = targetImg;
+                bgClone.classList.remove('is-show');
+                
+
+                //event
+                bgClone.style.backgroundImage = targetImg;
+                bgClone.style.display = 'block';
+                bgClone.classList.add('is-show');
+                bgCopy.setAttribute('href', targetLink);
+                bgCopy.textContent = targetText;
+
+            },5000);
+        })();
+    </script>
+</body>
+</html>

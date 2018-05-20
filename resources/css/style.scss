@@ -1,0 +1,196 @@
+html,body{
+    min-height:100vh;
+}
+.wrapper{
+    min-height:100vh;
+}
+
+
+/**
+ * main css
+*/
+.main-section{
+    position:relative;
+    width:100%;
+    height:100vh;
+    background-color:#f7e4ee;
+    background-image:url('/resources/img/bg1.jpg');
+    background-repeat:no-repeat;
+    background-position:center;
+    background-size:cover;
+    .bg-area{
+        opacity:0;
+        transition:all .5s ease-in-out;
+        position:absolute;
+        top:0;
+        left:0;
+        width:100%;
+        height:100%;
+        display:block;
+        background-image:url('/resources/img/bg1.jpg');
+        background-repeat:no-repeat;
+        background-position:center;
+        background-size:cover;
+       
+    }
+    .bg-area.is-show{
+        opacity:1;
+    }
+     
+    .intro-card{
+        transition:all .3s ease-in-out;
+        position:absolute;
+        display:inline-block;
+        width:600px;
+        height:333px;
+        text-align:center;
+        top:50%;
+        left:50%;
+        background-color:#faf9f9;
+        border-radius:1em;
+        transform:translateX(-50%) translateY(-50%);
+        overflow:hidden;
+        box-shadow: 10px 10px 30px rgba(0,0,0,.2);
+    
+        h2{
+            padding-top:1.4em;
+            font-size:4rem;
+            font-weight:bold;
+            letter-spacing:-1px;
+        }
+        p{
+            font-size:1.5rem;
+            padding:.7em 0 3.2em 0;
+            letter-spacing:-.5px;
+        }
+        .btn{
+            font-weight:bold;
+            padding:1.4em 10em;
+        }
+    }
+    .img-copyright{
+        display:inline-block;
+        position:absolute;
+        bottom:1em;
+        right:1em;
+        font-size:1rem;
+        font-weight:normal;
+        color:#666;
+    }
+}
+
+
+.overlay{
+    z-index:900;
+    position:fixed;
+    top:0;
+    left:0;
+    display:block;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,.8);
+}
+
+.popup{
+    z-index:1000;
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translateX(-50%) translateY(-50%);
+    width:80%;
+    height:80vh;
+    background-color:#fff;
+    border-radius:.5em;
+    overflow:hidden;
+
+    .popup-title{
+        text-align:center;
+        font-size:2rem;
+        padding:2em 0;
+        background-color:#0558a5;
+        color:#fff;
+    }
+    .popup-content{
+        height:100%;
+
+        .btn{
+            position:absolute;
+            bottom:4em;
+            left:50%;
+            transform:translateX(-50%);    
+        }
+    }
+    
+}
+
+/**
+ * craeteCard css
+*/
+.choice-card-area{
+    width:100%;
+    margin:0 auto;
+    text-align: center;
+    &:after{
+        content:'';
+        display:block;
+        clear:both;
+    }
+    .choice-card{
+        text-align: center;
+        float:left;
+        display:block;
+        width:50%;
+        height:45vh;
+        font-size:1.2rem;
+        
+        &.is-choice{
+            background-color:#f3f5f7fa;
+            .preview-card{
+                background-color:#e0e2e4fa;
+            }
+        }
+        h2{
+            font-size:1.5rem;  
+            padding-top:2em;
+            padding-bottom:2em;          
+        }
+        .preview-card{
+            margin:0 auto;
+            background-color:#f1f1f1;
+            &.horizontal{
+                width:100px;
+                height:70px;
+                margin-top:2em;
+            }
+
+            &.vertical{
+                width:70px;
+                height:100px;
+                margin-top:1em;
+            }
+        }
+        
+    }   
+}
+
+
+/**
+ * btn system
+*/
+.btn{
+    transition:all .2s ease-in-out;
+    display:inline-block;
+    padding:1em 2em;
+    background-color:#0558a5;
+    color:#fff;
+    border:0;
+    border-radius:.3em;
+    font-size:1rem;
+    font-weight:normal;
+    vertical-align:middle;
+    cursor:pointer;
+    &:hover,&:focus,&:active{
+        background-color:#04396b;
+        text-decoration:none;
+    }
+}
