@@ -100,7 +100,8 @@ html, body {
   top: 50%;
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
-  width: 80%;
+  max-width: 1000px;
+  width: 60%;
   height: 80vh;
   background-color: #fff;
   border-radius: .5em;
@@ -111,12 +112,6 @@ html, body {
   text-align: center;
   font-size: 2rem;
   padding: 2em 0;
-  background-color: #0558a5;
-  color: #fff;
-}
-
-.popup .popup-content {
-  height: 100%;
 }
 
 .popup .popup-content .btn {
@@ -132,6 +127,8 @@ html, body {
 .choice-card-area {
   width: 100%;
   margin: 0 auto;
+  border-top: 1px solid #dbdddffa;
+  border-bottom: 1px solid #dbdddffa;
   text-align: center;
 }
 
@@ -142,26 +139,51 @@ html, body {
 }
 
 .choice-card-area .choice-card {
+  position: relative;
   text-align: center;
   float: left;
   display: block;
   width: 50%;
   height: 45vh;
   font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.choice-card-area .choice-card:hover strong, .choice-card-area .choice-card:focus strong, .choice-card-area .choice-card:active strong {
+  color: #333;
+}
+
+.choice-card-area .choice-card:hover .preview-card, .choice-card-area .choice-card:focus .preview-card, .choice-card-area .choice-card:active .preview-card {
+  background-color: #e0e2e4fa;
+}
+
+.choice-card-area .choice-card:hover .icon-check .fa-check-circle, .choice-card-area .choice-card:focus .icon-check .fa-check-circle, .choice-card-area .choice-card:active .icon-check .fa-check-circle {
+  color: #999;
 }
 
 .choice-card-area .choice-card.is-choice {
-  background-color: #f3f5f7fa;
+  background-color: #f7fbff;
+  box-shadow: 0 0 10px rgba(19, 21, 34, 0.2);
+}
+
+.choice-card-area .choice-card.is-choice strong {
+  color: #333;
 }
 
 .choice-card-area .choice-card.is-choice .preview-card {
   background-color: #e0e2e4fa;
 }
 
-.choice-card-area .choice-card h2 {
+.choice-card-area .choice-card.is-choice .icon-check .fa-check-circle {
+  color: #026bce;
+}
+
+.choice-card-area .choice-card strong {
+  display: block;
+  color: #aaa;
   font-size: 1.5rem;
   padding-top: 2em;
-  padding-bottom: 2em;
+  padding-bottom: 1em;
 }
 
 .choice-card-area .choice-card .preview-card {
@@ -170,15 +192,36 @@ html, body {
 }
 
 .choice-card-area .choice-card .preview-card.horizontal {
-  width: 100px;
-  height: 70px;
-  margin-top: 2em;
+  width: 170px;
+  height: 100px;
+  margin-top: 4em;
 }
 
 .choice-card-area .choice-card .preview-card.vertical {
-  width: 70px;
-  height: 100px;
+  width: 100px;
+  height: 170px;
   margin-top: 1em;
+}
+
+.choice-card-area .choice-card .icon-check {
+  position: absolute;
+  bottom: 2em;
+  left: 50%;
+  display: inline-block;
+  text-align: center;
+  transform: translateX(-50%);
+}
+
+.choice-card-area .choice-card .icon-check .fa-check-circle {
+  display: block;
+  font-size: 4rem;
+  color: #ddd;
+}
+
+.choice-card-area .choice-card label {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 /**
@@ -201,5 +244,13 @@ html, body {
 .btn:hover, .btn:focus, .btn:active {
   background-color: #04396b;
   text-decoration: none;
+}
+
+.btn.btn-sm {
+  padding: .7em 1.5em;
+}
+
+.btn.btn-lg {
+  padding: 1.5em 4em;
 }
 /*# sourceMappingURL=style.css.map */

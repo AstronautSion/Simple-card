@@ -97,7 +97,8 @@ html,body{
     top:50%;
     left:50%;
     transform:translateX(-50%) translateY(-50%);
-    width:80%;
+    max-width:1000px;
+    width:60%;
     height:80vh;
     background-color:#fff;
     border-radius:.5em;
@@ -107,11 +108,10 @@ html,body{
         text-align:center;
         font-size:2rem;
         padding:2em 0;
-        background-color:#0558a5;
-        color:#fff;
+        
     }
     .popup-content{
-        height:100%;
+        //height:100%;
 
         .btn{
             position:absolute;
@@ -129,6 +129,8 @@ html,body{
 .choice-card-area{
     width:100%;
     margin:0 auto;
+    border-top:1px solid #dbdddffa;
+    border-bottom:1px solid #dbdddffa;
     text-align: center;
     &:after{
         content:'';
@@ -136,38 +138,78 @@ html,body{
         clear:both;
     }
     .choice-card{
+        position:relative;
         text-align: center;
         float:left;
         display:block;
         width:50%;
         height:45vh;
         font-size:1.2rem;
-        
-        &.is-choice{
-            background-color:#f3f5f7fa;
+        cursor:pointer;
+        &:hover,&:focus,&:active{
+            strong{
+                color:#333;
+            }
             .preview-card{
                 background-color:#e0e2e4fa;
             }
+            .icon-check .fa-check-circle{
+                color:#999;
+            }
         }
-        h2{
+        &.is-choice{
+            strong{
+                color:#333;
+            }
+            background-color:#f7fbff;
+            box-shadow: 0 0 10px rgba(19, 21, 34, 0.2);
+            .preview-card{
+                background-color:#e0e2e4fa;
+            }
+            .icon-check .fa-check-circle{
+                color:#026bce;
+            }
+        }
+        strong{
+            display:block;
+            color:#aaa;
             font-size:1.5rem;  
             padding-top:2em;
-            padding-bottom:2em;          
+            padding-bottom:1em;          
         }
         .preview-card{
             margin:0 auto;
             background-color:#f1f1f1;
             &.horizontal{
-                width:100px;
-                height:70px;
-                margin-top:2em;
+                width:170px;
+                height:100px;
+                margin-top:4em;
             }
 
             &.vertical{
-                width:70px;
-                height:100px;
+                width:100px;
+                height:170px;
                 margin-top:1em;
             }
+        }
+
+        .icon-check{
+            position:absolute;
+            bottom:2em;
+            left:50%;
+            display:inline-block;
+            text-align:center;
+            transform: translateX(-50%);
+            .fa-check-circle{
+                display:block;
+                font-size:4rem;
+                color:#ddd;
+            }
+        }
+        label{
+            display:block;
+            width:100%;
+            height:100%;
         }
         
     }   
@@ -193,4 +235,11 @@ html,body{
         background-color:#04396b;
         text-decoration:none;
     }
+    &.btn-sm{
+        padding:.7em 1.5em;
+    }
+    &.btn-lg{
+        padding:1.5em 4em;
+    }
+
 }

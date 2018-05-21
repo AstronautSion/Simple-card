@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="/resources/css/reset.css"/>
     <link rel="stylesheet" href="/resources/css/form.css"/>
     <link rel="stylesheet" href="/resources/css/style.css"/>
-
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 </head>
 <body>
     <div class="wrapper">
@@ -17,26 +17,67 @@
         <article class="popup">
             <h4 class="popup-title">Please select a card type.</h4>
             <div class="popup-content">
-                <div class="choice-card-area">
-                    <div class="choice-card is-choice">
-                        <h2>가로형</h2>
-                        <div class="preview-card horizontal"></div>
+                <form action="">
+                    <div class="choice-card-area">
+                        <div class="choice-card is-choice">
+                            <label for="choice-card-horizontal">
+                                <strong>가로형</strong>
+                                <div class="preview-card horizontal"></div>
+                                <div class="icon-check">
+                                    <i class="far fa-check-circle"></i>
+                                    <input id="choice-card-horizontal" class="blind" type="radio" name="choice-card" />
+                                </div>
+                            </label>
+                        </div>
+                        <div class="choice-card">
+                            <label for="choice-card-vertical">
+                                <strong>세로형</strong>
+                                <div class="preview-card vertical"></div>
+                                <div class="icon-check">
+                                    <i class="far fa-check-circle"></i>
+                                    <input id="choice-card-vertical" class="blind" type="radio" name="choice-card"/>
+                                </div>
+                            </label>
+                        </div>
+                        <button type="submit" class="btn btn-lg">Choice This Type</button>
                     </div>
-                    <div class="choice-card">
-                        <h2>세로형</h2>
-                        <div class="preview-card vertical"></div>
-                    </div>
-                    <button type="button" class="btn">Choice This Type</button>
-                </div>
-                
+            </form>
             </div>
         </article>
 
-        <section class="section">
-            
-            
-        </section>
+        <div id="container" class="container">
+
+        </div>
+        
     </div>
-    
+
+    <script src="/resources/js/jquery-3.3.1.min.js"></script>
+    <script>
+        
+        (function(){
+            var cards = Array.prototype.slice.call(document.querySelectorAll('.choice-card'));
+            var choiceCardEvent = function(){
+                cards.forEach(function(t){
+                    t.classList.remove('is-choice');
+                });
+                this.classList.add('is-choice');
+            }
+            cards.forEach(function(card){
+                card.addEventListener('click', function(){choiceCardEvent.call(this)});
+            });
+
+        })();
+
+        (function(){
+            
+          
+            
+        })();
+
+
+
+
+    </script>
+
 </body>
 </html>
