@@ -1,0 +1,31 @@
+[
+    {
+        "id"    : "1",
+        "name"  : "default",
+        "htmlSrc"   : "<div class='h-temp-card-default'>card-default</div>"
+    },{
+        "id"    : "2",
+        "name"  : "simple-01",
+        "htmlSrc"   : "<div class='h-temp-card-simple-01'>simple-01</div>"
+    },{
+        "id"    : "3",
+        "name"  : "simple-02",
+        "htmlSrc"   : "<div class='h-temp-card-simple-02'>simple-02</div>"
+    },{
+        "id"    : "4",
+        "name"  : "simple-03",
+        "htmlSrc"   : "<div class='h-temp-card-simple-03'>simple-03</div>"
+    },{
+        "id"    : "5",
+        "name"  : "simple-04",
+        "htmlSrc"   : "<div class='h-temp-card-simple-04'>simple-04</div>"
+    },{
+        "id"    : "6",
+        "name"  : "simple-05",
+        "htmlSrc"   : "<div class='h-temp-card-simple-05'>simple-05</div>"
+    },{
+        "id"    : "7",
+        "name"  : "simple-06",
+        "htmlSrc"   : "<div class='h-temp-card-simple-06'>simple-06</div>"
+    }
+]

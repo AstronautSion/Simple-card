@@ -99,7 +99,7 @@ html,body{
     transform:translateX(-50%) translateY(-50%);
     max-width:1000px;
     width:60%;
-    height:80vh;
+    max-height:80vh;
     background-color:#fff;
     border-radius:.5em;
     overflow:hidden;
@@ -108,16 +108,15 @@ html,body{
         text-align:center;
         font-size:2rem;
         padding:2em 0;
-        
+        color:#0558a5;
     }
     .popup-content{
+        //padding-top:2em;
         //height:100%;
-
-        .btn{
-            position:absolute;
-            bottom:4em;
-            left:50%;
-            transform:translateX(-50%);    
+        .popup-button{
+            display:block;
+            padding:2em 0;
+            text-align:center;
         }
     }
     
@@ -128,92 +127,99 @@ html,body{
 */
 .choice-card-area{
     width:100%;
-    margin:0 auto;
-    border-top:1px solid #dbdddffa;
-    border-bottom:1px solid #dbdddffa;
-    text-align: center;
-    &:after{
-        content:'';
-        display:block;
-        clear:both;
-    }
-    .choice-card{
-        position:relative;
-        text-align: center;
-        float:left;
-        display:block;
-        width:50%;
-        height:45vh;
-        font-size:1.2rem;
-        cursor:pointer;
-        &:hover,&:focus,&:active{
-            strong{
-                color:#333;
-            }
-            .preview-card{
-                background-color:#e0e2e4fa;
-            }
-            .icon-check .fa-check-circle{
-                color:#999;
-            }
-        }
-        &.is-choice{
-            strong{
-                color:#333;
-            }
-            background-color:#f7fbff;
-            box-shadow: 0 0 10px rgba(19, 21, 34, 0.2);
-            .preview-card{
-                background-color:#e0e2e4fa;
-            }
-            .icon-check .fa-check-circle{
-                color:#026bce;
-            }
-        }
-        strong{
-            display:block;
-            color:#aaa;
-            font-size:1.5rem;  
-            padding-top:2em;
-            padding-bottom:1em;          
-        }
-        .preview-card{
-            margin:0 auto;
-            background-color:#f1f1f1;
-            &.horizontal{
-                width:170px;
-                height:100px;
-                margin-top:4em;
-            }
-
-            &.vertical{
-                width:100px;
-                height:170px;
-                margin-top:1em;
-            }
-        }
-
-        .icon-check{
-            position:absolute;
-            bottom:2em;
-            left:50%;
-            display:inline-block;
-            text-align:center;
-            transform: translateX(-50%);
-            .fa-check-circle{
-                display:block;
-                font-size:4rem;
-                color:#ddd;
-            }
-        }
-        label{
-            display:block;
+    
+    .choice-card-list{
+        border-top:1px solid #ddd;
+    
+        .choice-card{
+            transition:all .3s ease-in-out;
+            position:relative;
+            display:flex;
+            align-items: center;
+            justify-content: center;
             width:100%;
             height:100%;
-        }
-        
-    }   
+            border-bottom:1px solid #ddd;
+            box-sizing:border-box;
+            background-color:#fff;
+            font-size:1.2rem;
+            cursor:pointer;
+            
+            &:after{
+                content:'';
+                display:block;
+                clear:both;
+            }
+            .choice-box{
+                float:left;
+                display:block;
+                width:15%;
+                padding:2em 0;
+                text-align:center;
+                .fas{
+                    color:#aaa;
+                    font-size:1.4rem;
+                }
+            }
+            .card-name{
+                float:left;
+                display:block;
+                padding:2em 0;
+                width:35%;
+                font-size:1.2rem;
+                font-weight:bold;
+                i{
+                    font-size:.9rem;
+                    font-weight:normal;
+                    color:#999;
+                    font-style:normal;
+                }
+            }
+            .preview{
+                float:right;
+                display:block;
+                width:40%;
+                height:100%;
+                .preview-card{
+                    margin:0 auto;
+                    background-color:#bbbbbb;
+                    &.horizontal-card{
+                        width:45px;
+                        height:30px;
+                    }
+                    &.vertical-card{
+                        width:30px;
+                        height:45px;
+                    }
+                }
+            }
+            &.is-choice{
+                background-color:#d1f4ff;
+               
+                .choice-box .fas{
+                    color:#0558a5;
+                }
+            }
+        }   
+    }
 }
+
+/**
+ * template slider css
+*/
+.choice-template-area{
+    padding:1em 0;
+   
+    .template-slider{
+
+        .temp-slide{
+            padding:2em;
+            box-sizing:border-box;
+            background-color:#eee;
+        }
+    }
+} 
+
 
 
 /**
@@ -239,7 +245,7 @@ html,body{
         padding:.7em 1.5em;
     }
     &.btn-lg{
-        padding:1.5em 4em;
+        padding:1.2em 4em;
     }
 
 }

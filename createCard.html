@@ -9,73 +9,165 @@
     <link rel="stylesheet" href="/resources/css/reset.css"/>
     <link rel="stylesheet" href="/resources/css/form.css"/>
     <link rel="stylesheet" href="/resources/css/style.css"/>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <link rel="stylesheet" href="/resources/plugIn/slick/slick.css">
 </head>
 <body>
-    <div class="wrapper">
-        <div class="overlay"></div>
-        <article class="popup">
-            <h4 class="popup-title">Please select a card type.</h4>
-            <div class="popup-content">
-                <form action="">
-                    <div class="choice-card-area">
-                        <div class="choice-card is-choice">
-                            <label for="choice-card-horizontal">
-                                <strong>가로형</strong>
-                                <div class="preview-card horizontal"></div>
-                                <div class="icon-check">
-                                    <i class="far fa-check-circle"></i>
-                                    <input id="choice-card-horizontal" class="blind" type="radio" name="choice-card" />
-                                </div>
-                            </label>
+    <div class="overlay"></div>
+    <article class="popup">
+        <h4 class="popup-title">Please select a card type.</h4>
+        <div class="popup-content">
+            
+            <div class="choice-card-area">
+                <ul class="choice-card-list">
+                    <li class="choice-card is-choice">
+                        <div class="choice-box"><i class="fas fa-check"></i></div>
+                        <div class="card-name">Horizontal <i>( 90 x 50 ) mm</i></div>
+                        <div class="preview">
+                            <div class="preview-card horizontal-card"></div>
                         </div>
-                        <div class="choice-card">
-                            <label for="choice-card-vertical">
-                                <strong>세로형</strong>
-                                <div class="preview-card vertical"></div>
-                                <div class="icon-check">
-                                    <i class="far fa-check-circle"></i>
-                                    <input id="choice-card-vertical" class="blind" type="radio" name="choice-card"/>
-                                </div>
-                            </label>
+                        <input type="radio" id="choice-horizontal" class="blind" name="c-type" value="c-horizontal" checked="checked" />
+                    </li>
+                    <li class="choice-card">
+                        <div class="choice-box"><i class="fas fa-check"></i></div>
+                        <div class="card-name">Vertical <i>( 50 x 90 ) mm</i></div>
+                        <div class="preview">
+                            <div class="preview-card vertical-card"></div>
                         </div>
-                        <button type="submit" class="btn btn-lg">Choice This Type</button>
-                    </div>
-            </form>
+                        <input type="radio" id="choice-vertical" class="blind" name="c-type" value="c-vertical" />
+                    </li>
+                </ul>
+                
             </div>
-        </article>
-
-        <div id="container" class="container">
-
+            <div class="popup-button">
+                <button id="btn-choice-1" type="button" class="btn btn-lg btn-popup">Choice This Type</button>
+            </div>
         </div>
+    </article>
+    <div id="wrapper" class="wrapper">
         
     </div>
 
-    <script src="/resources/js/jquery-3.3.1.min.js"></script>
+    <script src="/resources/plugIn/jquery/jquery-3.3.1.min.js"></script>
+    <script src="/resources/plugIn/slick/slick.js"></script>
     <script>
         
         (function(){
-            var cards = Array.prototype.slice.call(document.querySelectorAll('.choice-card'));
-            var choiceCardEvent = function(){
-                cards.forEach(function(t){
-                    t.classList.remove('is-choice');
-                });
-                this.classList.add('is-choice');
-            }
-            cards.forEach(function(card){
-                card.addEventListener('click', function(){choiceCardEvent.call(this)});
+
+            var $cards = $('.choice-card');
+            //카드 타입
+            var choiceTypeVal = $cards.find('input[type=radio][name=c-type]:checked').val();
+            
+
+            var cardsClassEvent = function(){
+                $cards.removeClass('is-choice');
+                $(this).addClass('is-choice');
+            };
+
+            var cardsChoiceInput = function(){
+               $cards.find('input[type="radio"]').removeAttr('checked');
+               $(this).find('input[type="radio"]').attr('checked','checked');
+               choiceTypeVal = $cards.find('input[type=radio][name=c-type]:checked').val();
+            };
+
+            $cards.on('click', function(){
+                cardsClassEvent.call(this);
+                cardsChoiceInput.call(this);
             });
+            
+
+
+            var $btn1 = $('#btn-choice-1');
+            var api = null;
+            
+
+            function getAjaxJsonTempInfo(type){
+
+                var $popupTitle = $('.popup-title');
+                var jsonUrl = null;
+                switch(type){
+                    case 'c-horizontal' :
+
+                        $popupTitle.text('Please select Horizontal template');
+                        jsonUrl = "/resources/data/json/horizontalTemplate.json";
+                        break;
+
+                    case 'c-vertical' :
+                        
+                        $popupTitle.text('Please select Vertical template');
+                        jsonUrl = "/resources/data/json/verticalTemplate.json";
+                        break;
+                }
+
+                $.ajax({
+                    url: jsonUrl,
+                    dataType: "json",
+                    success: function(data){
+                        console.log(data);
+                        appendTempSlider(data);
+                    }
+                });
+            }
+            //slider 내용 채우기
+            function appendTempSlider(data){
+                var $tempSlider = $('.template-slider');
+                data.forEach(function(dt){
+                    $tempSlider.append('<li class="temp-slide">'+dt.htmlSrc +'</li>');
+                });
+                $tempSlider.slick({
+                    infinite: true,
+                    slidesToShow: 6,
+                    slidesToScroll: 6
+                });
+            }
+
+            getAjaxHtmlTypeCard();
+            // 선택한 type의 card templte 뿌리기
+            function getAjaxHtmlTypeCard(){
+                $btn1.on('click', function(){
+                    
+                    if(choiceTypeVal === 'c-horizontal'){
+                        api = '/resources/data/html/horizontalTemplate.html';
+                    }else{
+                        api = '/resources/data/html/verticalTemplate.html';
+                    }
+                    $.ajax({
+                        type:'GET',
+                        url: api,
+                        dataType: 'html',
+                        success: function(data){
+
+                            $('.popup').html(data);
+                            getAjaxJsonTempInfo(choiceTypeVal);
+                            getAjaxHtmlTempCard();
+                        }
+                    });
+                });
+            }
+
+            // 선택한 template 가지고 작업뷰 가기
+            function getAjaxHtmlTempCard(){
+                var $btn2 = $('#btn-choice-2');
+                
+
+                $btn2.on('click', function(){
+                    $.ajax({
+                        type : "GET",
+                        url  : "/resources/data/html/createCardBoard.html",
+                        dataType: 'html',
+                        success:function(data){
+                            $('#wrapper').html(data);
+                            $('.popup').add('.overlay').fadeOut();
+                           
+                        },
+                    });
+                });
+            }
+
+            
+            
 
         })();
-
-        (function(){
-            
-          
-            
-        })();
-
-
-
 
     </script>
 
