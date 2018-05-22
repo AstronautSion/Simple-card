@@ -37,7 +37,6 @@
                         <input type="radio" id="choice-vertical" class="blind" name="c-type" value="c-vertical" />
                     </li>
                 </ul>
-                
             </div>
             <div class="popup-button">
                 <button id="btn-choice-1" type="button" class="btn btn-lg btn-popup">Choice This Type</button>
@@ -45,7 +44,30 @@
         </div>
     </article>
     <div id="wrapper" class="wrapper">
-        
+        <header id="header" class="header">
+            <button class="btn-new-card">NEW CARD</button>
+        </header>
+        <div id="container" class="container">
+            <aside classs="left-menu">
+                <ul class="gnb">
+                    <li class="menu">
+                        <a href="#">FONT</a>
+                        <ul class="depth">
+                            <li></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">IMG</a>
+                        <ul class="depth">
+                            <li></li>
+                        </ul>
+                    </li>
+                </ul>
+            </aside>
+        </div>
+        <footer id="footer" class="footer">
+
+        </footer>
     </div>
 
     <script src="/resources/plugIn/jquery/jquery-3.3.1.min.js"></script>
@@ -57,6 +79,9 @@
             var $cards = $('.choice-card');
             //카드 타입
             var choiceTypeVal = $cards.find('input[type=radio][name=c-type]:checked').val();
+            var choiceTemp = null;
+            var $btn1 = $('#btn-choice-1');
+            var api = null;
             
 
             var cardsClassEvent = function(){
@@ -76,29 +101,61 @@
             });
             
 
-
-            var $btn1 = $('#btn-choice-1');
-            var api = null;
-            
-
             function getAjaxJsonTempInfo(type){
 
                 var $popupTitle = $('.popup-title');
                 var jsonUrl = null;
+                var fName = null;
+                 //slider 내용 채우기
+                var appendTempSlider = function(data){
+                    var $tempSlider = $('.template-slider');
+                    data.forEach(function(dt){
+                        $tempSlider.append('<li class="temp-slide"><div class="'+ fName + dt.name +'">'+ dt.name +'</div></li>');
+                    });
+                    $tempSlider.slick({
+                        infinite: true,
+                        slidesToShow: 6,
+                        slidesToScroll: 6
+                    });
+
+                    // tempslider 이벤트 세팅
+                    var $items = $tempSlider.find('.temp-slide');
+                    var className = 'is-choice';
+                    
+                    var firstChlidActive = function(target){
+                        if($items.find(target).length > 0){
+                            $items.find(target).parent('.temp-slide').addClass(className);
+                            choiceTemp = $items.find(target);
+                        }
+                    }
+                    firstChlidActive('.h-default');
+                    firstChlidActive('.v-default');
+                    
+                    $items.on('click', function(){
+                        if(!$(this).hasClass(className)){
+                            $items.removeClass(className);
+                            $(this).addClass(className);
+                        }
+                    });
+
+                }
+
                 switch(type){
                     case 'c-horizontal' :
 
                         $popupTitle.text('Please select Horizontal template');
                         jsonUrl = "/resources/data/json/horizontalTemplate.json";
+                        fName = 'h-';
                         break;
 
                     case 'c-vertical' :
                         
                         $popupTitle.text('Please select Vertical template');
                         jsonUrl = "/resources/data/json/verticalTemplate.json";
+                        fName = 'v-'
                         break;
                 }
-
+                
                 $.ajax({
                     url: jsonUrl,
                     dataType: "json",
@@ -108,19 +165,7 @@
                     }
                 });
             }
-            //slider 내용 채우기
-            function appendTempSlider(data){
-                var $tempSlider = $('.template-slider');
-                data.forEach(function(dt){
-                    $tempSlider.append('<li class="temp-slide">'+dt.htmlSrc +'</li>');
-                });
-                $tempSlider.slick({
-                    infinite: true,
-                    slidesToShow: 6,
-                    slidesToScroll: 6
-                });
-            }
-
+            
             getAjaxHtmlTypeCard();
             // 선택한 type의 card templte 뿌리기
             function getAjaxHtmlTypeCard(){
@@ -148,8 +193,6 @@
             // 선택한 template 가지고 작업뷰 가기
             function getAjaxHtmlTempCard(){
                 var $btn2 = $('#btn-choice-2');
-                
-
                 $btn2.on('click', function(){
                     $.ajax({
                         type : "GET",
@@ -163,10 +206,6 @@
                     });
                 });
             }
-
-            
-            
-
         })();
 
     </script>
