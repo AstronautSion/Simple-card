@@ -13,202 +13,57 @@
     <link rel="stylesheet" href="/resources/plugIn/slick/slick.css">
 </head>
 <body>
-    <div class="overlay"></div>
-    <article class="popup">
-        <h4 class="popup-title">Please select a card type.</h4>
-        <div class="popup-content">
-            
-            <div class="choice-card-area">
-                <ul class="choice-card-list">
-                    <li class="choice-card is-choice">
-                        <div class="choice-box"><i class="fas fa-check"></i></div>
-                        <div class="card-name">Horizontal <i>( 90 x 50 ) mm</i></div>
-                        <div class="preview">
-                            <div class="preview-card horizontal-card"></div>
-                        </div>
-                        <input type="radio" id="choice-horizontal" class="blind" name="c-type" value="c-horizontal" checked="checked" />
-                    </li>
-                    <li class="choice-card">
-                        <div class="choice-box"><i class="fas fa-check"></i></div>
-                        <div class="card-name">Vertical <i>( 50 x 90 ) mm</i></div>
-                        <div class="preview">
-                            <div class="preview-card vertical-card"></div>
-                        </div>
-                        <input type="radio" id="choice-vertical" class="blind" name="c-type" value="c-vertical" />
-                    </li>
-                </ul>
-            </div>
-            <div class="popup-button">
-                <button id="btn-choice-1" type="button" class="btn btn-lg btn-popup">Choice This Type</button>
-            </div>
-        </div>
-    </article>
+    <!-- <div class="overlay"></div>
+    <article class="popup"></article> -->
     <div id="wrapper" class="wrapper">
-        <header id="header" class="header">
-            <button class="btn-new-card">NEW CARD</button>
-        </header>
-        <div id="container" class="container">
-            <aside classs="left-menu">
-                <ul class="gnb">
-                    <li class="menu">
-                        <a href="#">FONT</a>
-                        <ul class="depth">
-                            <li></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#">IMG</a>
-                        <ul class="depth">
-                            <li></li>
-                        </ul>
-                    </li>
-                </ul>
-            </aside>
-        </div>
-        <footer id="footer" class="footer">
 
-        </footer>
+        <div id="template--create-card-board" class="wrapper-layout">
+            <header class="header">
+                <div class="wrap">
+                    <button class="btn-new-card" type="button">NEW CARD</button>
+                </div>
+            </header>
+            <div id="container" class="container">
+                <aside class="left-menu">
+                    <ul class="menu-item-list">
+                        <li>
+                            <a class="menu-item" href="#">FONT</a>
+                            <ul class="depth">
+                                <li><a href="#">sdfsfdasfasf</a></li>
+                                <li><a href="#">asdftt</a></li>
+                                <li><a href="#">asdfsdf</a></li>
+                                <li><a href="#">asfsdf</a></li>
+                                <li><a href="#">adsfasdfsd</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="menu-item" href="#">IMG</a>
+                            <ul class="depth">
+                                <li><a href="#">img1</a></li>
+                                <li><a href="#">img1</a></li>
+                                <li><a href="#">img1</a></li>
+                                <li><a href="#">img1</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </aside>
+                <div class="create-card-board">
+                    <canvas id="card-front" width="600" height="333"></canvas>
+                    <canvas id="card-back" width="600" height="333"></canvas>
+                </div>
+            </div>
+            <!-- <footer>
+                <div class="wrap">
+                    <p class="copyright">&copy; Astronaut</p>
+                </div>
+            </footer> -->
+        </div>
+
     </div>
 
-    <script src="/resources/plugIn/jquery/jquery-3.3.1.min.js"></script>
-    <script src="/resources/plugIn/slick/slick.js"></script>
-    <script>
-        
-        (function(){
-
-            var $cards = $('.choice-card');
-            //카드 타입
-            var choiceTypeVal = $cards.find('input[type=radio][name=c-type]:checked').val();
-            var choiceTemp = null;
-            var $btn1 = $('#btn-choice-1');
-            var api = null;
-            
-
-            var cardsClassEvent = function(){
-                $cards.removeClass('is-choice');
-                $(this).addClass('is-choice');
-            };
-
-            var cardsChoiceInput = function(){
-               $cards.find('input[type="radio"]').removeAttr('checked');
-               $(this).find('input[type="radio"]').attr('checked','checked');
-               choiceTypeVal = $cards.find('input[type=radio][name=c-type]:checked').val();
-            };
-
-            $cards.on('click', function(){
-                cardsClassEvent.call(this);
-                cardsChoiceInput.call(this);
-            });
-            
-
-            function getAjaxJsonTempInfo(type){
-
-                var $popupTitle = $('.popup-title');
-                var jsonUrl = null;
-                var fName = null;
-                 //slider 내용 채우기
-                var appendTempSlider = function(data){
-                    var $tempSlider = $('.template-slider');
-                    data.forEach(function(dt){
-                        $tempSlider.append('<li class="temp-slide"><div class="'+ fName + dt.name +'">'+ dt.name +'</div></li>');
-                    });
-                    $tempSlider.slick({
-                        infinite: true,
-                        slidesToShow: 6,
-                        slidesToScroll: 6
-                    });
-
-                    // tempslider 이벤트 세팅
-                    var $items = $tempSlider.find('.temp-slide');
-                    var className = 'is-choice';
-                    
-                    var firstChlidActive = function(target){
-                        if($items.find(target).length > 0){
-                            $items.find(target).parent('.temp-slide').addClass(className);
-                            choiceTemp = $items.find(target);
-                        }
-                    }
-                    firstChlidActive('.h-default');
-                    firstChlidActive('.v-default');
-                    
-                    $items.on('click', function(){
-                        if(!$(this).hasClass(className)){
-                            $items.removeClass(className);
-                            $(this).addClass(className);
-                        }
-                    });
-
-                }
-
-                switch(type){
-                    case 'c-horizontal' :
-
-                        $popupTitle.text('Please select Horizontal template');
-                        jsonUrl = "/resources/data/json/horizontalTemplate.json";
-                        fName = 'h-';
-                        break;
-
-                    case 'c-vertical' :
-                        
-                        $popupTitle.text('Please select Vertical template');
-                        jsonUrl = "/resources/data/json/verticalTemplate.json";
-                        fName = 'v-'
-                        break;
-                }
-                
-                $.ajax({
-                    url: jsonUrl,
-                    dataType: "json",
-                    success: function(data){
-                        console.log(data);
-                        appendTempSlider(data);
-                    }
-                });
-            }
-            
-            getAjaxHtmlTypeCard();
-            // 선택한 type의 card templte 뿌리기
-            function getAjaxHtmlTypeCard(){
-                $btn1.on('click', function(){
-                    
-                    if(choiceTypeVal === 'c-horizontal'){
-                        api = '/resources/data/html/horizontalTemplate.html';
-                    }else{
-                        api = '/resources/data/html/verticalTemplate.html';
-                    }
-                    $.ajax({
-                        type:'GET',
-                        url: api,
-                        dataType: 'html',
-                        success: function(data){
-
-                            $('.popup').html(data);
-                            getAjaxJsonTempInfo(choiceTypeVal);
-                            getAjaxHtmlTempCard();
-                        }
-                    });
-                });
-            }
-
-            // 선택한 template 가지고 작업뷰 가기
-            function getAjaxHtmlTempCard(){
-                var $btn2 = $('#btn-choice-2');
-                $btn2.on('click', function(){
-                    $.ajax({
-                        type : "GET",
-                        url  : "/resources/data/html/createCardBoard.html",
-                        dataType: 'html',
-                        success:function(data){
-                            $('#wrapper').html(data);
-                            $('.popup').add('.overlay').fadeOut();
-                           
-                        },
-                    });
-                });
-            }
-        })();
-
-    </script>
+<script src="/resources/plugIn/jquery/jquery-3.3.1.min.js"></script>
+<script src="/resources/plugIn/slick/slick.js"></script>
+<!-- <script src="/resources/js/createCardIntro.js"></script> -->
 
 </body>
 </html>
