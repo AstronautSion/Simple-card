@@ -13,6 +13,13 @@
     <link rel="stylesheet" href="/resources/plugIn/slick/slick.css">
 </head>
 <body>
+    <div id="alert-box" class="alert-box">
+        <strong class="text-box">show alert 창 테스트 입니다. 반갑습니다.</strong>
+        <div class="btn-area">
+            <button class="btn-agree">확인</button>
+            <button class="btn-cencel">취소</button>
+        </div>
+    </div>   
     <!-- <div class="overlay"></div>
     <article class="popup"></article> -->
     <div id="wrapper" class="wrapper">
@@ -27,18 +34,14 @@
                 <aside class="left-menu">
                     <ul class="menu-item-list">
                         <li>
-                            <a class="menu-item" href="#">FONT</a>
-                            <ul class="depth">
-                                <li><a href="#">sdfsfdasfasf</a></li>
-                                <li><a href="#">asdftt</a></li>
-                                <li><a href="#">asdfsdf</a></li>
-                                <li><a href="#">asfsdf</a></li>
-                                <li><a href="#">adsfasdfsd</a></li>
+                            <button id="btn-create-font" type="button" class="menu-item" href="#">FONT</button>
+                            <ul id="menu-font" class="depth">
+                                
                             </ul>
                         </li>
                         <li>
-                            <a class="menu-item" href="#">IMG</a>
-                            <ul class="depth">
+                            <button id="btn-create-img" type="button" class="menu-item" href="#">IMG</button>
+                            <ul id="menu-img" class="depth">
                                 <li><a href="#">img1</a></li>
                                 <li><a href="#">img1</a></li>
                                 <li><a href="#">img1</a></li>
@@ -63,6 +66,7 @@
 
 <script src="/resources/plugIn/jquery/jquery-3.3.1.min.js"></script>
 <script src="/resources/plugIn/slick/slick.js"></script>
+<script src="/resources/js/createCardInterface.js"></script>
 <!-- <script src="/resources/js/createCardIntro.js"></script> -->
 
 </body>
