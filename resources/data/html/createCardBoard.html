@@ -1,31 +1,39 @@
 <div id="template--create-card-board" class="wrapper-layout">
-    <header class="header">
-        <div class="wrap">
-            <button class="btn-new-card" type="button">NEW CARD</button>
+        <header class="header">
+            <div class="wrap">
+                <button class="btn-new-card" type="button">NEW CARD</button>
+            </div>
+        </header>
+        <div id="container" class="container">
+            <aside class="left-menu">
+                <ul class="menu-item-list">
+                    <li>
+                        <button id="btn-create-font" type="button" class="menu-item" href="#">FONT</button>
+                        <ul id="menu-font" class="depth">
+                            
+                        </ul>
+                    </li>
+                    <li>
+                        <button id="btn-create-img" type="button" class="menu-item" href="#">IMG</button>
+                        <ul id="menu-img" class="depth">
+                            <li><a href="#">img1</a></li>
+                            <li><a href="#">img1</a></li>
+                            <li><a href="#">img1</a></li>
+                            <li><a href="#">img1</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </aside>
+            <div class="create-card-board">
+                <canvas id="card-front" width="600" height="333"></canvas>
+                <canvas id="card-back" width="600" height="333"></canvas>
+            </div>
         </div>
-    </header>
-    <div id="container" class="container">
-        <aside class="left-menu">
-            <ul>
-                <li>
-                    <a href="#">font</a>
-                    <ul>
-                        <li><a href="#">sdfsfdasfasf</a></li>
-                        <li><a href="#">asdftt</a></li>
-                        <li><a href="#">asdfsdf</a></li>
-                        <li><a href="#">asfsdf</a></li>
-                        <li><a href="#">adsfasdfsd</a></li>
-                    </ul>
-                </li>
-
-            </ul>
-        </aside>
+        <!-- <footer>
+            <div class="wrap">
+                <p class="copyright">&copy; Astronaut</p>
+            </div>
+        </footer> -->
     </div>
-    <footer>
-        <div class="wrap">
-            footer
-        </div>
-    </footer>
-</div>
-
-
+    
+    <script src="/resources/js/createCardInterface.js"></script>

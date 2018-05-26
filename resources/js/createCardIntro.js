@@ -24,7 +24,7 @@
             cardsChoiceInput.call(this);
         });
         return choiceTypeVal;
-    }
+    };
 
     var divisionOfCardType = function(typeVal){
 
@@ -42,42 +42,42 @@
             case 'c-vertical' :
                 $popupTitle.text('Please select Vertical template');
                 jsonUrl = "/resources/data/json/verticalTemplate.json";
-                fName = 'v-'
+                fName = 'v-';
                 break;
         }
         return { jsonUrl: jsonUrl, fName : fName };
-    }
+    };
 
     //slider 내용 채우기
     var appendTempSlider = function(data, resultVal){
-            var $tempSlider = $('.template-slider');
-            data.forEach(function(dt){
-                $tempSlider.append('<li class="temp-slide"><div class="'+ resultVal.fName + dt.name +'">'+ dt.name +'</div></li>');
-            });
-            $tempSlider.slick({
-                infinite: true,
-                slidesToShow: 6,
-                slidesToScroll: 6
-            });
+        var $tempSlider = $('.template-slider');
+        data.forEach(function(dt){
+            $tempSlider.append('<li class="temp-slide"><div class="'+ resultVal.fName + dt.name +'">'+ dt.name +'</div></li>');
+        });
+        $tempSlider.slick({
+            infinite: true,
+            slidesToShow: 6,
+            slidesToScroll: 6
+        });
 
-            // tempslider 이벤트 세팅
-            var $items = $tempSlider.find('.temp-slide');
-            var className = 'is-choice';
-            
-            var firstChlidActive = function(target){
-                if($items.find(target).length > 0){
-                    $items.find(target).parent('.temp-slide').addClass(className);
-                }
+        // tempslider 이벤트 세팅
+        var $items = $tempSlider.find('.temp-slide');
+        var className = 'is-choice';
+        
+        var firstChlidActive = function(target){
+            if($items.find(target).length > 0){
+                $items.find(target).parent('.temp-slide').addClass(className);
             }
-            firstChlidActive('.'+ resultVal.fName +'default');
-            
-            $items.on('click', function(){
-                if(!$(this).hasClass(className)){
-                    $items.removeClass(className);
-                    $(this).addClass(className);
-                }
-            });
-        }
+        };
+        firstChlidActive('.'+ resultVal.fName +'default');
+        
+        $items.on('click', function(){
+            if(!$(this).hasClass(className)){
+                $items.removeClass(className);
+                $(this).addClass(className);
+            }
+        });
+    };
 
 
 
@@ -97,7 +97,7 @@
               
             }
         });
-    }
+    };
     
     // 선택한 type의 card templte popup 띄우기
     var getCardTemp = function(typeVal){
@@ -114,7 +114,7 @@
                 }
             });
         });
-    }
+    };
 
     // Temp 팝업에 tempinfo가져와 뿌리기
     var getJsonTempInfo = function(typeVal, resultVal){
@@ -128,7 +128,7 @@
                 getCreateCardBoard();
             }
         });
-    }
+    };
 
     // 선택한 template 가지고 작업뷰 가기
     var getCreateCardBoard = function(){
@@ -145,8 +145,8 @@
                 },
             });
         });
-    }
-
+    };
+    $('.overlay').show();
     getCardType();
 
 })();
