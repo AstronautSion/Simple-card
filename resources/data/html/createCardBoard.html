@@ -5,7 +5,7 @@
             </div>
         </header>
         <div id="container" class="container">
-            <aside class="left-menu">
+            <!-- <aside class="left-menu">
                 <ul class="menu-item-list">
                     <li>
                         <button id="btn-create-font" type="button" class="menu-item" href="#">FONT</button>
@@ -23,17 +23,22 @@
                         </ul>
                     </li>
                 </ul>
-            </aside>
+            </aside> -->
             <div class="create-card-board">
-                <canvas id="card-front" width="600" height="333"></canvas>
-                <canvas id="card-back" width="600" height="333"></canvas>
+                <div id="card-front" calss="card-canvas">
+                    <div class="card-area">
+                    </div>
+                </div>
+                <div id="card-back" class="card-canvas" hidden>
+                    <div class="card-area">
+                    </div>
+                </div>
+                <div class="card-thumb-area">
+                    <div id="card-thumb-front" class="card-thumb is-active"></div>
+                    <div id="card-thumb-back" class="card-thumb"></div>
+                </div>
             </div>
         </div>
-        <!-- <footer>
-            <div class="wrap">
-                <p class="copyright">&copy; Astronaut</p>
-            </div>
-        </footer> -->
     </div>
-    
+
     <script src="/resources/js/createCardInterface.js"></script>

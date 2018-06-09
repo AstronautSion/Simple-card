@@ -1,4 +1,4 @@
-$main-color: #0558a5;
+@import './scss/_common.scss';
 
 
 html,body{
@@ -110,7 +110,7 @@ html,body{
         text-align:center;
         font-size:2rem;
         padding:2em 0;
-        color:$main-color;
+        color:$colorMain;
     }
     .popup-content{
         //padding-top:2em;
@@ -199,7 +199,7 @@ html,body{
                 background-color:#d1f4ff;
                
                 .choice-box .fas{
-                    color:$main-color;
+                    color:$colorMain;
                 }
             }
         }   
@@ -269,7 +269,7 @@ html,body{
              text-align:center;
 
              &.btn-agree{
-                background-color:$main-color;
+                background-color:$colorMain;
                 color:#fff;
                 font-weight:bold;
              }
@@ -294,15 +294,31 @@ html,body{
         border-bottom:1px solid #ddd;
         .btn-new-card{
             transition:all .3s ease-in-out;
-            width:300px;
+            width:100px;
             height:50px;
-            background-color:$main-color;
+            background-color:$colorMain;
             color:#fff;
             text-align:center;
-            font-size:1.2rem;
+            font-size:.8rem;
             font-weight:bold;
             &:hover,&:focus,&:active{
                 background-color:#04396b;
+            }
+        }
+        .create-btns-area{
+            position:absolute;
+            top:50%;
+            left:50%;
+            transform:translateX(-50%) translateY(-50%);
+            display:inline-block;
+            
+            .btn-create{
+                display:inline-block;
+                padding:.8em;
+                margin:0 .5em;
+                border:1px solid #ddd;
+                border-radius:.2em;
+                background-color:#fff;
             }
         }
     }
@@ -312,76 +328,102 @@ html,body{
         width:100%;
         height:100vh;
         padding-top:50px;
-        padding-left:300px;
+        //padding-left:300px;
         box-sizing:border-box;
-        .left-menu{
-            z-index:50;
-            position:absolute; 
-            top:0; 
-            left:0;
-            width:300px;
-            height:100vh;
-            padding-top:50px;
-            box-sizing:border-box;
-            border-right:1px solid #ddd;
+    }
+}
 
-            .menu-item-list{
-                .menu-item{
-                    display:block;
-                    width:100%;
-                    padding:1em 0;
-                    background-color:#f3f3f3;
-                    border-bottom:1px solid #ddd;
-                    color:$main-color;
-                    font-size:1.1rem;
-                    font-weight:bold;
-                    text-align:center;
-                }
-                .depth{
-                    li{
-                        display:flex;   
-                        padding:1em .4em;
-                        border:1px solid #fff;
-                        border-bottom:1px solid #ddd;
-                        box-sizing:border-box;
-                        &:hover,
-                        &:focus,
-                        &active{
-                            border:1px solid #ff7171;
-                            background-color:#fff6f6;
-                        }
-                        input{
-                            display:block;
-                            width:260px;
-                            padding:1em .2em;
-                            box-sizing:border-box;
-                            border:1px dotted #ddd;
-                            background-color:#fff;
-                        }
-                        button{
-                            display:block;
-                            width:40px;
-                            box-sizing:border-box;
-                            &.btn-delete{
-                                color:#ff7171;
-                            }
-                        }
-                    }
-                }
+
+
+.create-card-board{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translateX(-50%) translateY(-50%);
+    .card-canvas-area{
+        &#card-back{
+            display:none;
+        }
+        strong{
+            font-size:2rem;
+        }
+        .canvas{
+            width:600px;
+            height:333px;
+            //position:absolute;
+            border:1px solid #ddd;
+            display:block;
+            margin:2em auto;
+            
+            .card-area{
+                width:100%; 
+                height:100%;
             }
+        }
+    }
+
+    .card-thumb-area{
+        display:flex;
+        .card-thumb{
+            width:200px;
+            height:111px;
+            border:1px solid #ddd;
+            margin:.5em;
+            cursor:pointer;
+            &:hover,
+            &.is-active{
+                border-color:$colorMain
+            }
+        }
+    }        
+}
+
+
+.control-box{
+    z-index:9999;
+    position:absolute;
+    bottom:0;
+    left:0;
+    display:none;
+    width:100%;
+    padding:3em 1em;
+    border-top:1px solid #ddd;
+    background-color:#fff;
+    box-sizing:border-box;
+    .btn-close{
+        position:absolute;
+        top:10px;
+        right:10px;
+        font-size:20px;
+    }
+    .control-area{
+        width:80%;
+        margin:0 auto;
+        .textarea,
+        .input-file{
+            margin-bottom:1em;
+        }
+        .btn{
+            display:block;
+            width:100%;
+            margin:0 auto;
+            text-align:center;
         }
     }
 }
 
 
-/**
+
+
+/*
  * btn system
 */
+
 .btn{
     transition:all .2s ease-in-out;
     display:inline-block;
     padding:1em 2em;
-    background-color:$main-color;
+    background-color:$colorMain;
     color:#fff;
     border:0;
     border-radius:.3em;
@@ -399,13 +441,4 @@ html,body{
     &.btn-lg{
         padding:1.2em 4em;
     }
-
-}
-
-
-#card-front,
-#card-back{
-    //position:absolute;
-    border:1px solid #ddd;
-    margin:2em;
 }

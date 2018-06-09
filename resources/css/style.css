@@ -301,12 +301,12 @@ html, body {
 
 #template--create-card-board .header .btn-new-card {
   transition: all .3s ease-in-out;
-  width: 300px;
+  width: 100px;
   height: 50px;
   background-color: #0558a5;
   color: #fff;
   text-align: center;
-  font-size: 1.2rem;
+  font-size: .8rem;
   font-weight: bold;
 }
 
@@ -314,72 +314,113 @@ html, body {
   background-color: #04396b;
 }
 
+#template--create-card-board .header .create-btns-area {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  display: inline-block;
+}
+
+#template--create-card-board .header .create-btns-area .btn-create {
+  display: inline-block;
+  padding: .8em;
+  margin: 0 .5em;
+  border: 1px solid #ddd;
+  border-radius: .2em;
+  background-color: #fff;
+}
+
 #template--create-card-board .container {
   position: relative;
   width: 100%;
   height: 100vh;
   padding-top: 50px;
-  padding-left: 300px;
   box-sizing: border-box;
 }
 
-#template--create-card-board .container .left-menu {
-  z-index: 50;
+.create-card-board {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 300px;
-  height: 100vh;
-  padding-top: 50px;
-  box-sizing: border-box;
-  border-right: 1px solid #ddd;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
 }
 
-#template--create-card-board .container .left-menu .menu-item-list .menu-item {
+.create-card-board .card-canvas-area#card-back {
+  display: none;
+}
+
+.create-card-board .card-canvas-area strong {
+  font-size: 2rem;
+}
+
+.create-card-board .card-canvas-area .canvas {
+  width: 600px;
+  height: 333px;
+  border: 1px solid #ddd;
+  display: block;
+  margin: 2em auto;
+}
+
+.create-card-board .card-canvas-area .canvas .card-area {
+  width: 100%;
+  height: 100%;
+}
+
+.create-card-board .card-thumb-area {
+  display: flex;
+}
+
+.create-card-board .card-thumb-area .card-thumb {
+  width: 200px;
+  height: 111px;
+  border: 1px solid #ddd;
+  margin: .5em;
+  cursor: pointer;
+}
+
+.create-card-board .card-thumb-area .card-thumb:hover, .create-card-board .card-thumb-area .card-thumb.is-active {
+  border-color: #0558a5;
+}
+
+.control-box {
+  z-index: 9999;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: none;
+  width: 100%;
+  padding: 3em 1em;
+  border-top: 1px solid #ddd;
+  background-color: #fff;
+  box-sizing: border-box;
+}
+
+.control-box .btn-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+}
+
+.control-box .control-area {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.control-box .control-area .textarea,
+.control-box .control-area .input-file {
+  margin-bottom: 1em;
+}
+
+.control-box .control-area .btn {
   display: block;
   width: 100%;
-  padding: 1em 0;
-  background-color: #f3f3f3;
-  border-bottom: 1px solid #ddd;
-  color: #0558a5;
-  font-size: 1.1rem;
-  font-weight: bold;
+  margin: 0 auto;
   text-align: center;
 }
 
-#template--create-card-board .container .left-menu .menu-item-list .depth li {
-  display: flex;
-  padding: 1em .4em;
-  border: 1px solid #fff;
-  border-bottom: 1px solid #ddd;
-  box-sizing: border-box;
-}
-
-#template--create-card-board .container .left-menu .menu-item-list .depth li:hover, #template--create-card-board .container .left-menu .menu-item-list .depth li:focus, #template--create-card-board .container .left-menu .menu-item-list .depth liactive {
-  border: 1px solid #ff7171;
-  background-color: #fff6f6;
-}
-
-#template--create-card-board .container .left-menu .menu-item-list .depth li input {
-  display: block;
-  width: 260px;
-  padding: 1em .2em;
-  box-sizing: border-box;
-  border: 1px dotted #ddd;
-  background-color: #fff;
-}
-
-#template--create-card-board .container .left-menu .menu-item-list .depth li button {
-  display: block;
-  width: 40px;
-  box-sizing: border-box;
-}
-
-#template--create-card-board .container .left-menu .menu-item-list .depth li button.btn-delete {
-  color: #ff7171;
-}
-
-/**
+/*
  * btn system
 */
 .btn {
@@ -407,11 +448,5 @@ html, body {
 
 .btn.btn-lg {
   padding: 1.2em 4em;
-}
-
-#card-front,
-#card-back {
-  border: 1px solid #ddd;
-  margin: 2em;
 }
 /*# sourceMappingURL=style.css.map */

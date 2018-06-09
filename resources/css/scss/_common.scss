@@ -1,0 +1,9 @@
+$colorMain: #0558a5;
+$colorGrayLight:#ddd;
+
+//extend
+%clearFix {
+    content:'';
+    display:block;
+    clear:both;
+}

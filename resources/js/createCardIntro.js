@@ -146,7 +146,7 @@
             });
         });
     };
-    $('.overlay').show();
+    $('.overlay').show();   
     getCardType();
 
 })();

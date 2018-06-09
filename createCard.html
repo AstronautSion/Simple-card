@@ -28,10 +28,14 @@
             <header class="header">
                 <div class="wrap">
                     <button class="btn-new-card" type="button">NEW CARD</button>
+                    <div class="create-btns-area">
+                        <button class="btn-create btn-create-text" data-control-btn="1">T</button>
+                        <button class="btn-create btn-create-img" data-control-btn="2">IMG</button>
+                    </div>
                 </div>
             </header>
             <div id="container" class="container">
-                <aside class="left-menu">
+                <!-- <aside class="left-menu">
                     <ul class="menu-item-list">
                         <li>
                             <button id="btn-create-font" type="button" class="menu-item" href="#">FONT</button>
@@ -49,26 +53,51 @@
                             </ul>
                         </li>
                     </ul>
-                </aside>
+                </aside> -->
                 <div class="create-card-board">
-                    <canvas id="card-front" width="600" height="333"></canvas>
-                    <canvas id="card-back" width="600" height="333"></canvas>
+                    <div id="card-front" class="card-canvas-area card-front">
+                        <strong>Front Card</strong>
+                        <div class="canvas"></div>
+                    </div>
+                    <div id="card-back" class="card-canvas-area card-back">
+                        <strong>Back Card</strong>
+                        <div class="canvas"></div>
+                    </div>
+                    <div class="card-thumb-area">
+                        <div id="card-thumb-front" class="card-thumb card-thumb-front is-active"></div>
+                        <div id="card-thumb-back" class="card-thumb card-thumb-back"></div>
+                    </div>
                 </div>
+                
             </div>
-            <!-- <footer>
-                <div class="wrap">
-                    <p class="copyright">&copy; Astronaut</p>
+            <article class="control-box">
+                <button type="button" class="btn-close">X</button>
+                <div class="control-area text-control-area">
+                    <div class="textarea">
+                        <textarea name="" id="input-text"></textarea>
+                    </div>
+                    <button id="btn-input-text" class="btn btn-input-text">Confirm</button>    
                 </div>
-            </footer> -->
+
+                <div class="control-area img-control-area">
+                    <div class="input-file">
+                        <input class="upload-name" value="파일선택" disabled="disabled">
+                        <label for="input-file-1">업로드</label> 
+                      <input type="file" id="input-file-1" class="upload-hidden"> 
+                    </div>
+
+                    <button id="btn-input-img" class="btn btn-input-img">Confirm</button>    
+                </div>
+            </article>
         </div>
 
     </div>
 
 <script src="/resources/plugIn/jquery/jquery-3.3.1.min.js"></script>
 <script src="/resources/plugIn/slick/slick.js"></script>
-<script src="/resources/js/createCardIntro.js"></script>
-
-
+<!-- <script src="/resources/js/createCardIntro.js"></script> -->
+<script src="/resources/js/createCardInterface.js"></script>
+<script src="/resources/js/common.js"></script>
 
 </body>
 </html>
